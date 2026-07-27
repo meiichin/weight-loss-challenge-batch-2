@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Perjanjian: Weight Loss Challenge 2026</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans for UI, Space Grotesk for Headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <div class="badge">🔥 TANTANGAN RESMI</div>
+            <h1>Surat Perjanjian</h1>
+            <p class="subtitle">Weight Loss Challenge (2 Bulan)</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <p class="countdown-label">SISA WAKTU TANTANGAN</p>
+                <div class="timer">
+                    <div class="time-block">
+                        <span id="days">61</span>
+                        <label>Hari</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="hours">00</span>
+                        <label>Jam</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="minutes">00</span>
+                        <label>Menit</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="seconds">00</span>
+                        <label>Detik</label>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            
+            <!-- DAILY MOTIVATION BANNER -->
+            <div class="daily-banner-card" id="daily-quote-card">
+                <div class="quote-icon">💡</div>
+                <div class="quote-content">
+                    <span class="quote-tag">TIP & MOTIVASI HARI INI</span>
+                    <p class="quote-text" id="daily-quote-text">Ingat Gyukaku menantimu, jauhi gorengan hari ini!</p>
+                </div>
+                <button class="quote-refresh-btn" id="btn-refresh-quote" title="Ganti Tip">🔄</button>
+            </div>
+            
+            <!-- PROFILE CARDS -->
+            <section class="section-card participants-section">
+                <h2>I. Profil Peserta & Berat Awal</h2>
+                <div class="participants-grid">
+                    <!-- Participant 1: Pur -->
+                    <div class="participant-card user-1">
+                        <div class="card-glow"></div>
+                        <div class="avatar-ring">
+                            <span class="avatar-emoji">⚡</span>
+                        </div>
+                        <h3>Peserta 1 (Pur)</h3>
+                        <div class="weight-display">
+                            <span class="weight-val" id="start-weight-pur">-</span>
+                            <span class="weight-unit">kg</span>
+                        </div>
+                        <div class="role-badge">Pihak Pertama</div>
+                    </div>
+
+                    <!-- Participant 2: Akmal -->
+                    <div class="participant-card user-2">
+                        <div class="card-glow"></div>
+                        <div class="avatar-ring">
+                            <span class="avatar-emoji">🌟</span>
+                        </div>
+                        <h3>Peserta 2 (Akmal)</h3>
+                        <div class="weight-display">
+                            <span class="weight-val" id="start-weight-akmal">-</span>
+                            <span class="weight-unit">kg</span>
+                        </div>
+                        <div class="role-badge">Pihak Kedua</div>
+                    </div>
+
+                    <!-- Participant 3: Dewa -->
+                    <div class="participant-card user-3">
+                        <div class="card-glow"></div>
+                        <div class="avatar-ring">
+                            <span class="avatar-emoji">👑</span>
+                        </div>
+                        <h3>Peserta 3 (Dewa)</h3>
+                        <div class="weight-display">
+                            <span class="weight-val" id="start-weight-dewa">-</span>
+                            <span class="weight-unit">kg</span>
+                        </div>
+                        <div class="role-badge">Pihak Ketiga</div>
+                    </div>
+
+                    <!-- Participant 4: Inri -->
+                    <div class="participant-card user-4">
+                        <div class="card-glow"></div>
+                        <div class="avatar-ring">
+                            <span class="avatar-emoji">🔮</span>
+                        </div>
+                        <h3>Peserta 4 (Inri)</h3>
+                        <div class="weight-display">
+                            <span class="weight-val" id="start-weight-inri">-</span>
+                            <span class="weight-unit">kg</span>
+                        </div>
+                        <div class="role-badge">Pihak Keempat</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-info">
+                    <div class="timeline-item">
+                        <span class="timeline-date">29 Juli 2026</span>
+                        <span class="timeline-label">Mulai Tantangan</span>
+                    </div>
+                    <div class="timeline-progress-bar">
+                        <div class="progress-fill" id="timeline-progress"></div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">25 September 2026</span>
+                        <span class="timeline-label">Timbangan Akhir</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WINNER DETERMINATION -->
+            <section class="section-card rule-card">
+                <h2>II. Penentuan Pemenang (Sistem %)</h2>
+                <p>Pemenang ditentukan dari <strong>persentase (%) penurunan berat badan terbesar</strong> dari berat awal masing-masing, menggunakan rumus resmi berikut:</p>
+                
+                <div class="formula-box">
+                    <div class="math-expr">
+                        <span>% Penurunan</span> = <div class="fraction">
+                            <span class="numerator">Berat Awal - Berat Akhir</span>
+                            <span class="denominator">Berat Awal</span>
+                        </div> &times; 100
+                    </div>
+                </div>
+
+                <!-- Live Simulator -->
+                <div class="simulator-box">
+                    <h3>📊 Kalkulator Simulasi Penurunan</h3>
+                    <p class="simulator-desc">Masukkan perkiraan berat badan akhir untuk mensimulasikan hasil.</p>
+                    
+                    <div class="simulator-grid">
+                        <div class="input-group">
+                            <label>Berat Akhir Pur (kg)</label>
+                            <input type="number" step="0.1" id="sim-lu" placeholder="Contoh: 82.5">
+                            <div class="result-badge" id="sim-lu-res">0.00% turun</div>
+                        </div>
+                        <div class="input-group">
+                            <label>Berat Akhir Akmal (kg)</label>
+                            <input type="number" step="0.1" id="sim-akmal" placeholder="Contoh: 63.2">
+                            <div class="result-badge" id="sim-akmal-res">0.00% turun</div>
+                        </div>
+                        <div class="input-group">
+                            <label>Berat Akhir Dewa (kg)</label>
+                            <input type="number" step="0.1" id="sim-dewa" placeholder="Contoh: 79.5">
+                            <div class="result-badge" id="sim-dewa-res">0.00% turun</div>
+                        </div>
+                        <div class="input-group">
+                            <label>Berat Akhir Inri (kg)</label>
+                            <input type="number" step="0.1" id="sim-inri" placeholder="Contoh: 61.5">
+                            <div class="result-badge" id="sim-inri-res">0.00% turun</div>
+                        </div>
+                    </div>
+                    
+                    <div id="sim-winner" class="winner-alert">
+                        Masukkan berat badan di atas untuk melihat prediksi pemenang!
+                    </div>
+                </div>
+            </section>
+
+            <!-- DAILY PROGRESS CHART & INPUT -->
+            <section class="section-card progress-chart-card">
+                <h2>📈 Grafik Progress & Input Harian</h2>
+                <p class="section-desc" style="text-align: center; margin-bottom: 1.5rem;">Pantau perkembangan penurunan berat badan real-time dari timbangan awal sampai sekarang.</p>
+                
+                <!-- Chart Tabs -->
+                <div class="chart-tabs" style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <button class="chart-tab-btn active" data-chart-type="weight">📈 Tren Berat (kg)</button>
+                    <button class="chart-tab-btn" data-chart-type="percent">📉 % Penurunan</button>
+                    <button class="chart-tab-btn" data-chart-type="kg-lost">⚖️ Kg Turun</button>
+                    <button class="chart-tab-btn" data-chart-type="leaderboard">🏆 Klasemen Standings</button>
+                </div>
+
+                <!-- Chart container -->
+                <div class="chart-container-wrapper" style="position: relative; height: 340px; width: 100%; margin-bottom: 1.5rem;">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+
+                <!-- Input form toggle button -->
+                <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+                    <button class="btn btn-primary" id="btn-toggle-weigh-in">
+                        <span class="btn-icon">⚖️</span> Catat Berat Badan Baru
+                    </button>
+                </div>
+
+                <!-- Hidden Input form -->
+                <div class="weigh-in-form-wrapper" id="weigh-in-form-wrapper" style="display: none; margin-bottom: 1.5rem;">
+                    <div class="weigh-in-form" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 1.25rem;">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: #ffffff;">Input Timbangan Baru</h3>
+                        <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+                            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label for="weigh-in-party" style="font-size: 0.8rem; color: var(--text-secondary);">Peserta</label>
+                                <select id="weigh-in-party" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                                    <option value="pur">Pur</option>
+                                    <option value="akmal">Akmal</option>
+                                    <option value="dewa">Dewa</option>
+                                    <option value="inri">Inri</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label for="weigh-in-weight" style="font-size: 0.8rem; color: var(--text-secondary);">Berat Baru (kg)</label>
+                                <input type="number" step="0.05" id="weigh-in-weight" placeholder="Contoh: 87.5" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                            </div>
+                            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label for="weigh-in-date" style="font-size: 0.8rem; color: var(--text-secondary);">Tanggal</label>
+                                <input type="date" id="weigh-in-date" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                            </div>
+                        </div>
+                        <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                            <button class="btn btn-secondary" id="btn-cancel-weigh-in" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Batal</button>
+                            <button class="btn btn-success" id="btn-submit-weigh-in" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Simpan Data ✓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historical Table -->
+                <div class="history-table-wrapper" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; overflow: hidden;">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: #ffffff;">Riwayat Log Timbangan</h3>
+                    <div style="overflow-x: auto; width: 100%;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--text-secondary);">
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600;">Tanggal</th>
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600; color: #00d2ff;">Pur (kg)</th>
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600; color: #ff3b70;">Akmal (kg)</th>
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600; color: #ffbd00;">Dewa (kg)</th>
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600; color: #a855f7;">Inri (kg)</th>
+                                    <th style="padding: 0.75rem 0.5rem; font-weight: 600; text-align: center;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" style="color: #ffffff;">
+                                <!-- Dynamic rows loaded from Firebase -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OFFICIAL WEIGH-IN SCHEDULES -->
+            <section class="section-card schedule-section-card">
+                <h2>📅 Jadwal Timbangan Resmi</h2>
+                <p class="section-desc" style="text-align: center; margin-bottom: 1.5rem;">Perjalanan berat badan resmi. Terdiri dari timbangan awal, 3 kali timbangan antara, dan timbangan akhir.</p>
+                
+                <div class="schedule-grid" id="official-schedule-grid">
+                    <!-- Dynamic schedule cards loaded from Firebase -->
+                </div>
+
+                <!-- Milestone Chart Container -->
+                <div class="milestone-chart-wrapper" style="position: relative; margin-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem; width: 100%;">
+                    <h4 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 1rem; color: #ffffff; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        📊 Grafik Tren Timbangan Resmi (Berat Badan - kg)
+                    </h4>
+                    <div style="position: relative; height: 200px; width: 100%;">
+                        <canvas id="milestone-chart"></canvas>
+                    </d            <!-- WEIGH-IN RULES -->
+            <section class="section-card rules-list-card">
+                <h2>III. Aturan Timbangan (Weigh-in Rules)</h2>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <div class="rule-icon">⏰</div>
+                        <div class="rule-text">
+                            <h4>Waktu Timbangan</h4>
+                            <p>Timbangan Awal dilakukan <strong>29 Juli 2026</strong>. Timbangan Akhir dilakukan pagi hari pada <strong>25 September 2026</strong> (hari kerja).</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">💧</div>
+                        <div class="rule-text">
+                            <h4>Kondisi Tubuh</h4>
+                            <p>Dilakukan pagi hari setelah bangun tidur, setelah buang air (BAB/BAK), dan <strong>SEBELUM</strong> makan/minum apa pun.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">🩳</div>
+                        <div class="rule-text">
+                            <h4>Pakaian</h4>
+                            <p>Menggunakan pakaian seminimal mungkin (misal: kaos & celana pendek) agar timbangan lebih akurat.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">📸</div>
+                        <div class="rule-text">
+                            <h4>Validasi</h4>
+                            <p>Angka pada timbangan digital **wajib difoto atau divideo** dengan jelas sebagai bukti otentik yang tidak bisa diganggu gugat.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-footnote">
+                    💡 <strong>Metode Bebas:</strong> Selama proses 2 bulan, masing-masing peserta bebas menggunakan metode diet dan olahraga apa pun (Defisit kalori, intermittent fasting, gym, cardio, dll).
+                </div>
+            </section>
+
+            <!-- CONSEQUENCES -->
+            <section class="section-card bet-card">
+                <div class="fire-bg"></div>
+                <div class="bet-tag">🍖 HUKUMAN & TARUHAN</div>
+                <h2>Traktiran Oharang AYCE!</h2>
+                <p class="bet-desc">Semua peserta makan <strong>Oharang All You Can Eat (Paket Premium Plus)</strong>. Siapa yang menang bayar paling sedikit, siapa yang kalah bayar paling banyak!</p>
+
+                <!-- Podium breakdown -->
+                <div class="podium-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div class="podium-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; text-align: center; position: relative;">
+                        <div class="podium-rank">🥇</div>
+                        <div class="podium-place" style="font-weight: 700; color: #ffffff;">Juara 1</div>
+                        <div class="podium-pct" style="font-size: 1.8rem; font-weight: 800; color: #10b981; margin: 0.5rem 0;">FREE</div>
+                        <div class="podium-desc" style="font-size: 0.75rem; color: var(--text-secondary);">tidak bayar sama sekali!</div>
+                    </div>
+                    <div class="podium-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; text-align: center; position: relative;">
+                        <div class="podium-rank">🥈</div>
+                        <div class="podium-place" style="font-weight: 700; color: #ffffff;">Juara 2</div>
+                        <div class="podium-pct" style="font-size: 1.8rem; font-weight: 800; color: #00d2ff; margin: 0.5rem 0;">10%</div>
+                        <div class="podium-desc" style="font-size: 0.75rem; color: var(--text-secondary);">dari total tagihan (Rp 60.560)</div>
+                    </div>
+                    <div class="podium-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; text-align: center; position: relative;">
+                        <div class="podium-rank">🥉</div>
+                        <div class="podium-place" style="font-weight: 700; color: #ffffff;">Juara 3</div>
+                        <div class="podium-pct" style="font-size: 1.8rem; font-weight: 800; color: #ffbd00; margin: 0.5rem 0;">30%</div>
+                        <div class="podium-desc" style="font-size: 0.75rem; color: var(--text-secondary);">dari total tagihan (Rp 181.680)</div>
+                    </div>
+                    <div class="podium-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; text-align: center; position: relative;">
+                        <div class="podium-rank">💀</div>
+                        <div class="podium-place" style="font-weight: 700; color: #ffffff;">Juara 4</div>
+                        <div class="podium-pct" style="font-size: 1.8rem; font-weight: 800; color: #ff3b70; margin: 0.5rem 0;">60%</div>
+                        <div class="podium-desc" style="font-size: 0.75rem; color: var(--text-secondary);">dari total tagihan (Rp 363.360)</div>
+                    </div>
+                </div>
+
+                <div class="bet-formula-note" style="margin-top: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                    📝 <strong>Contoh:</strong> Jika total tagihan Oharang = <strong>Rp 605.600</strong>, maka Juara 1 gratis (Rp 0), Juara 2 bayar <strong>Rp 60.560</strong>, Juara 3 bayar <strong>Rp 181.680</strong>, dan Juara 4 bayar <strong>Rp 363.360</strong>. Juara 1 tinggal makan kenyang gratis!
+                </div>
+            </section>
+
+            <!-- SIGNATURE SECTION -->
+            <section class="section-card sign-section">
+                <h2>IV. Persetujuan Perjanjian</h2>
+                <p class="sign-sub">Tantangan resmi berjalan setelah keempat pihak menandatangani kontrak digital ini.</p>
+                
+                <div class="signatures-wrapper">
+                    <!-- Pur's Signature -->
+                    <div class="sig-box" id="sig-pur-box">
+                        <div class="sig-header">
+                            <span class="sig-title">Pur (Pihak I)</span>
+                            <span class="sig-status badge-waiting" id="sig-pur-status">⏳ Menunggu Persetujuan</span>
+                        </div>
+                        <div class="sig-content" id="sig-pur-content">
+                            <button class="btn btn-primary" id="btn-open-sign-pur">
+                                <span class="btn-icon">✍️</span> Tanda Tangani Sekarang
+                            </button>
+                            <p class="sig-prompt">Ketuk tombol untuk menyetujui perjanjian ini</p>
+                        </div>
+                    </div>
+
+                    <!-- Akmal's Signature -->
+                    <div class="sig-box" id="sig-akmal-box">
+                        <div class="sig-header">
+                            <span class="sig-title">Akmal (Pihak II)</span>
+                            <span class="sig-status badge-waiting" id="sig-akmal-status">⏳ Menunggu Persetujuan</span>
+                        </div>
+                        <div class="sig-content" id="sig-akmal-content">
+                            <button class="btn btn-primary" id="btn-open-sign-akmal">
+                                <span class="btn-icon">✍️</span> Tanda Tangani Sekarang
+                            </button>
+                            <p class="sig-prompt">Ketuk tombol untuk menyetujui perjanjian ini</p>
+                        </div>
+                    </div>
+
+                    <!-- Dewa's Signature -->
+                    <div class="sig-box" id="sig-dewa-box">
+                        <div class="sig-header">
+                            <span class="sig-title">Dewa (Pihak III)</span>
+                            <span class="sig-status badge-waiting" id="sig-dewa-status">⏳ Menunggu Persetujuan</span>
+                        </div>
+                        <div class="sig-content" id="sig-dewa-content">
+                            <button class="btn btn-primary" id="btn-open-sign-dewa">
+                                <span class="btn-icon">✍️</span> Tanda Tangani Sekarang
+                            </button>
+                            <p class="sig-prompt">Ketuk tombol untuk menyetujui perjanjian ini</p>
+                        </div>
+                    </div>
+
+                    <!-- Inri's Signature -->
+                    <div class="sig-box" id="sig-inri-box">
+                        <div class="sig-header">
+                            <span class="sig-title">Inri (Pihak IV)</span>
+                            <span class="sig-status badge-waiting" id="sig-inri-status">⏳ Menunggu Persetujuan</span>
+                        </div>
+                        <div class="sig-content" id="sig-inri-content">
+                            <button class="btn btn-primary" id="btn-open-sign-inri">
+                                <span class="btn-icon">✍️</span> Tanda Tangani Sekarang
+                            </button>
+                            <p class="sig-prompt">Ketuk tombol untuk menyetujui perjanjian ini</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staakmalt Agreement -->
+                <div class="staakmalt-banner">
+                    ⚠️ <em>"Dengan menyetujui, semua pihak dinyatakan setuju dan tidak boleh ngambek atau cari alasan di akhir tantangan."</em>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Weight Loss Challenge © 2026</p>
+            <p class="author">Dibuat dengan 🔥 untuk persahabatan sehat</p>
+        </footer>
+
+    </div>
+
+    <!-- SIGNATURE MODAL -->
+    <div class="modal" id="sign-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Tanda Tangan</h3>
+                <button class="close-btn" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-tip">Gunakan jari atau mouse untuk menggambar tanda tangan Anda di area abu-abu di bawah.</p>
+                
+                <div class="canvas-container">
+                    <canvas id="signature-canvas" width="400" height="200"></canvas>
+                </div>
+
+                <div class="canvas-actions">
+                    <button class="btn btn-secondary" id="btn-clear-canvas">Hapus Coretan</button>
+                    <button class="btn btn-success" id="btn-save-signature">Konfirmasi & Setuju ✓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONGRATULATIONS BANNER overlay -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-content">
+            <div class="success-icon">🔒</div>
+            <h2>KONTRAK RESMI AKTIF!</h2>
+            <p>Persetujuan semua pihak telah dikunci. Mulai perjalanan hidup lebih sehat!</p>
+            <div class="stamp">OFFICIAL AGREEMENT</div>
+            <button class="btn btn-primary" id="btn-close-success">Tutup & Lihat Kontrak</button>
+        </div>
+    </div>
+
+    <!-- Script file -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
