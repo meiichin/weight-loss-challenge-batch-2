@@ -217,12 +217,12 @@
 
                 <!-- Hidden Input form -->
                 <div class="weigh-in-form-wrapper" id="weigh-in-form-wrapper" style="display: none; margin-bottom: 1.5rem;">
-                    <div class="weigh-in-form" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 1.25rem;">
-                        <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: #ffffff;">Input Timbangan Baru</h3>
+                    <div class="weigh-in-form" style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: var(--text-primary);">Input Timbangan Baru</h3>
                         <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
                             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
                                 <label for="weigh-in-party" style="font-size: 0.8rem; color: var(--text-secondary);">Peserta</label>
-                                <select id="weigh-in-party" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                                <select id="weigh-in-party" style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.6rem; color: var(--text-primary); outline: none; font-family: inherit;">
                                     <option value="akmal">Akmal</option>
                                     <option value="dewa">Dewa</option>
                                     <option value="inri">Inri</option>
@@ -231,11 +231,11 @@
                             </div>
                             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
                                 <label for="weigh-in-weight" style="font-size: 0.8rem; color: var(--text-secondary);">Berat Baru (kg)</label>
-                                <input type="number" step="0.05" id="weigh-in-weight" placeholder="Contoh: 87.5" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                                <input type="number" step="0.05" id="weigh-in-weight" placeholder="Contoh: 87.5" style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.6rem; color: var(--text-primary); outline: none; font-family: inherit;">
                             </div>
                             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.4rem;">
                                 <label for="weigh-in-date" style="font-size: 0.8rem; color: var(--text-secondary);">Tanggal</label>
-                                <input type="date" id="weigh-in-date" style="background: #111422; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.6rem; color: #ffffff; outline: none; font-family: inherit;">
+                                <input type="date" id="weigh-in-date" style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.6rem; color: var(--text-primary); outline: none; font-family: inherit;">
                             </div>
                         </div>
                         <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
@@ -246,8 +246,8 @@
                 </div>
 
                 <!-- Historical Table -->
-                <div class="history-table-wrapper" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.25rem; overflow: hidden;">
-                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: #ffffff;">Riwayat Log Timbangan</h3>
+                <div class="history-table-wrapper" style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 1.25rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem; color: var(--text-primary);">Riwayat Log Timbangan</h3>
                     <div style="overflow-x: auto; width: 100%;">
                         <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
                             <thead>

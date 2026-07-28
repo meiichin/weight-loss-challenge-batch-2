@@ -217,9 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const payRules = [
                 'FREE 🎉 (Rp 0)', 
-                '10% 😅 (Rp 60.560)', 
-                '30% 😭 (Rp 181.680)', 
-                '60% 💀 (Rp 363.360)'
+                '5% 😅 (Rp 30.280)', 
+                '15% 😭 (Rp 90.840)', 
+                '80% 💀 (Rp 484.480)'
             ];
             const medals = ['🥇', '🥈', '🥉', '💀'];
 
@@ -233,17 +233,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Build payment breakdown table
                 paymentHtml = `
-                <div style="margin-top: 14px; text-align: left; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden;">
-                    <div style="padding: 10px 14px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); border-bottom: 1px solid rgba(255,255,255,0.05);">💸 SIMULASI PEMBAYARAN (Total Rp 605.600)</div>
+                <div style="margin-top: 14px; text-align: left; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden;">
+                    <div style="padding: 10px 14px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); border-bottom: 1px solid rgba(0,0,0,0.05);">💸 SIMULASI PEMBAYARAN (Total Rp 605.600)</div>
                     ${betParties.map((p, idx) => {
-                        const rule = payRules[idx] || '60% 💀 (Rp 363.360)';
+                        const rule = payRules[idx] || '80% 💀 (Rp 484.480)';
                         const medal = medals[idx] || '💀';
                         const isWinner = idx === 0;
-                        const bgColor = isWinner ? 'rgba(16,185,129,0.07)' : 'transparent';
+                        const bgColor = isWinner ? 'rgba(16,185,129,0.04)' : 'transparent';
                         return `
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${bgColor}; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${bgColor}; border-bottom: 1px solid rgba(0,0,0,0.04);">
                             <span style="font-size:0.85rem;">${medal} <span style="color:${p.color}; font-weight:700;">${p.name}</span> <span style="font-size:0.7rem; color: var(--text-secondary);">(${p.pct.toFixed(2)}% turun)</span></span>
-                            <span style="font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: ${isWinner ? '#10b981' : '#ffffff'};">${rule}</span>
+                            <span style="font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: ${isWinner ? '#10b981' : 'var(--text-primary)'};">${rule}</span>
                         </div>`;
                     }).join('')}
                 </div>`;
