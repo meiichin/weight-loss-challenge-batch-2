@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let START_WEIGHT_DEWA = null;
     let START_WEIGHT_INRI = null;
 
-    const START_DATE = new Date('2026-07-29T00:00:00');
+    const START_DATE = new Date('2026-07-28T00:00:00');
     const END_DATE = new Date('2026-09-25T08:00:00');
 
     // DOM Elements
@@ -538,9 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortedLogs = [...logs].sort((a, b) => new Date(a.date) - new Date(b.date));
 
         // Get unique sorted dates
-        const dates = ['2026-07-29'];
+        const dates = ['2026-07-28'];
         sortedLogs.forEach(log => {
-            if (!dates.includes(log.date) && log.date >= '2026-07-29') {
+            if (!dates.includes(log.date) && log.date >= '2026-07-28') {
                 dates.push(log.date);
             }
         });
@@ -810,8 +810,8 @@ document.addEventListener('DOMContentLoaded', () => {
         body.innerHTML = '';
 
         const grouped = {};
-        grouped['2026-07-29'] = {
-            date: '2026-07-29',
+        grouped['2026-07-28'] = {
+            date: '2026-07-28',
             pur: START_WEIGHT_LU ? { weight: START_WEIGHT_LU, id: 'start' } : null,
             akmal: START_WEIGHT_AKMAL ? { weight: START_WEIGHT_AKMAL, id: 'start' } : null,
             dewa: START_WEIGHT_DEWA ? { weight: START_WEIGHT_DEWA, id: 'start' } : null,
@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         logs.forEach(log => {
-            if (log.date === '2026-07-29') return; // Skip logs on start date as they are handled by baseline row
+            if (log.date === '2026-07-28') return; // Skip logs on start date as they are handled by baseline row
             if (!grouped[log.date]) {
                 grouped[log.date] = { date: log.date, pur: null, akmal: null, dewa: null, inri: null };
             }
@@ -904,7 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = '';
 
         const MILESTONES = [
-            { name: 'Timbangan Awal', date: '2026-07-29', type: 'start', badgeClass: 'done', badgeText: 'Mulai' },
+            { name: 'Timbangan Awal', date: '2026-07-28', type: 'start', badgeClass: 'done', badgeText: 'Mulai' },
             { name: 'Timbangan Antara I', date: '2026-08-14', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
             { name: 'Timbangan Antara II', date: '2026-08-28', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
             { name: 'Timbangan Antara III', date: '2026-09-11', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
@@ -1061,13 +1061,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderMilestoneChart(logs) {
         const ctx = document.getElementById('milestone-chart').getContext('2d');
         
-        const milestoneDates = ['2026-07-29', '2026-08-14', '2026-08-28', '2026-09-11', '2026-09-25'];
-        const milestoneLabels = ['Awal (29 Jul)', 'Antara I (14 Agt)', 'Antara II (28 Agt)', 'Antara III (11 Sep)', 'Akhir (25 Sep)'];
+        const milestoneDates = ['2026-07-28', '2026-08-14', '2026-08-28', '2026-09-11', '2026-09-25'];
+        const milestoneLabels = ['Awal (28 Jul)', 'Antara I (14 Agt)', 'Antara II (28 Agt)', 'Antara III (11 Sep)', 'Akhir (25 Sep)'];
 
-        const logsPurStart = logs.filter(l => l.date === '2026-07-29' && l.party === 'pur');
-        const logsAkmalStart = logs.filter(l => l.date === '2026-07-29' && l.party === 'akmal');
-        const logsDewaStart = logs.filter(l => l.date === '2026-07-29' && l.party === 'dewa');
-        const logsInriStart = logs.filter(l => l.date === '2026-07-29' && l.party === 'inri');
+        const logsPurStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'pur');
+        const logsAkmalStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'akmal');
+        const logsDewaStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'dewa');
+        const logsInriStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'inri');
 
         const dataPur = [logsPurStart.length > 0 ? parseFloat(logsPurStart[logsPurStart.length - 1].weight.toFixed(1)) : null];
         const dataAkmal = [logsAkmalStart.length > 0 ? parseFloat(logsAkmalStart[logsAkmalStart.length - 1].weight.toFixed(1)) : null];
@@ -1300,7 +1300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Dynamically evaluate start weights from logs
             const getStartWeightFromLogs = (party) => {
-                const startLog = localLogs.find(log => log.party === party && log.date === '2026-07-29');
+                const startLog = localLogs.find(log => log.party === party && log.date === '2026-07-28');
                 if (startLog) return parseFloat(startLog.weight);
                 const partyLogs = localLogs.filter(log => log.party === party).sort((a, b) => new Date(a.date) - new Date(b.date));
                 if (partyLogs.length > 0) return parseFloat(partyLogs[0].weight);
