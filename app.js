@@ -985,55 +985,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 const shortDateText = `${dayNum} ${monthName} '${yearShort}`;
 
                 card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; width: 100%;">
-                        <span class="status-badge done" style="position: static; font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.type === 'start' ? 'Mulai' : 'Done ✓'}</span>
-                        <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary); margin: 0;">📅 ${shortDateText}</span>
+                    <div class="schedule-info">
+                        <div style="display: flex; gap: 0.4rem; align-items: center;">
+                            <span class="status-badge done" style="font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.type === 'start' ? 'Mulai' : 'Done ✓'}</span>
+                            <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary);">📅 ${shortDateText}</span>
+                        </div>
+                        <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0.15rem 0 0; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     </div>
-                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     
-                    <div class="schedule-participants-list" style="display: flex; flex-direction: column; gap: 0.35rem; width: 100%;">
+                    <div class="schedule-participants-list">
                         <!-- Akmal Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
-                                <span class="akmal-text" style="font-weight: 700;">${akmalData.shortName}</span>
-                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${akmalData.weightText}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; margin-top: -1px; white-space: nowrap;">
+                        <div class="schedule-participant-row user-2">
+                            <span class="akmal-text" style="font-size: 0.75rem; font-weight: 700;">${akmalData.shortName}</span>
+                            <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${akmalData.weightText}</span>
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${akmalData.lossText}
-                            </div>
+                            </span>
                         </div>
 
                         <!-- Dewa Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
-                                <span class="dewa-text" style="font-weight: 700;">${dewaData.shortName}</span>
-                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${dewaData.weightText}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; margin-top: -1px; white-space: nowrap;">
+                        <div class="schedule-participant-row user-3">
+                            <span class="dewa-text" style="font-size: 0.75rem; font-weight: 700;">${dewaData.shortName}</span>
+                            <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${dewaData.weightText}</span>
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${dewaData.lossText}
-                            </div>
+                            </span>
                         </div>
 
                         <!-- Inri Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
-                                <span class="inri-text" style="font-weight: 700;">${inriData.shortName}</span>
-                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${inriData.weightText}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: -1px; white-space: nowrap;">
+                        <div class="schedule-participant-row user-4">
+                            <span class="inri-text" style="font-size: 0.75rem; font-weight: 700;">${inriData.shortName}</span>
+                            <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${inriData.weightText}</span>
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${inriData.lossText}
-                            </div>
+                            </span>
                         </div>
 
                         <!-- Pur Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
-                                <span class="pur-text" style="font-weight: 700;">${purData.shortName}</span>
-                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${purData.weightText}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: -1px; white-space: nowrap;">
+                        <div class="schedule-participant-row user-1">
+                            <span class="pur-text" style="font-size: 0.75rem; font-weight: 700;">${purData.shortName}</span>
+                            <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${purData.weightText}</span>
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${purData.lossText}
-                            </div>
+                            </span>
                         </div>
                     </div>
                 `;
@@ -1045,15 +1039,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const shortDateText = `${dayNum} ${monthName} '${yearShort}`;
 
                 card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; width: 100%;">
-                        <span class="status-badge ${milestone.badgeClass}" style="position: static; font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.badgeText}</span>
-                        <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary); margin: 0;">📅 ${shortDateText}</span>
+                    <div class="schedule-info">
+                        <div style="display: flex; gap: 0.4rem; align-items: center;">
+                            <span class="status-badge ${milestone.badgeClass}" style="font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.badgeText}</span>
+                            <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary);">📅 ${shortDateText}</span>
+                        </div>
+                        <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0.15rem 0 0; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     </div>
-                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     
-                    <div class="upcoming-placeholder" style="padding: 1rem 0.25rem;">
-                        <span class="lock-icon" style="font-size: 1.2rem; margin-bottom: 0.25rem;">🔒</span>
-                        <p style="font-size: 0.65rem;">Menunggu jadwal timbangan resmi</p>
+                    <div class="upcoming-placeholder">
+                        <span class="lock-icon" style="font-size: 1.1rem; line-height: 1;">🔒</span>
+                        <p style="font-size: 0.75rem; margin: 0;">Menunggu jadwal timbangan resmi</p>
                     </div>
                 `;
             }
