@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let progressChart = null;
     let milestoneChart = null;
     let localLogs = [];
-    let currentChartType = 'weight';
+    let currentChartType = 'percent';
 
     // Set up chart tab toggles
     document.querySelectorAll('.chart-tab-btn').forEach(btn => {
