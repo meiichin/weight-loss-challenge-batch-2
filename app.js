@@ -606,23 +606,23 @@ document.addEventListener('DOMContentLoaded', () => {
             progressChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Pur', 'Akmal', 'Dewa', 'Inri'],
+                    labels: ['Akmal', 'Dewa', 'Inri', 'Pur'],
                     datasets: [
                         {
                             label: '% Penurunan Saat Ini',
                             data: [
-                                parseFloat(pctPurLatest.toFixed(2)),
                                 parseFloat(pctAkmalLatest.toFixed(2)),
                                 parseFloat(pctDewaLatest.toFixed(2)),
-                                parseFloat(pctInriLatest.toFixed(2))
+                                parseFloat(pctInriLatest.toFixed(2)),
+                                parseFloat(pctPurLatest.toFixed(2))
                             ],
                             backgroundColor: [
-                                'rgba(0, 210, 255, 0.25)',
                                 'rgba(255, 59, 112, 0.25)',
                                 'rgba(255, 189, 0, 0.25)',
-                                'rgba(168, 85, 247, 0.25)'
+                                'rgba(168, 85, 247, 0.25)',
+                                'rgba(0, 210, 255, 0.25)'
                             ],
-                            borderColor: ['#00d2ff', '#ff3b70', '#ffbd00', '#a855f7'],
+                            borderColor: ['#ff3b70', '#ffbd00', '#a855f7', '#00d2ff'],
                             borderWidth: 2,
                             borderRadius: 12,
                             borderSkipped: false,
@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             callbacks: {
                                 label: function(context) {
                                     const idx = context.dataIndex;
-                                    const kgs = [kgPurLatest, kgAkmalLatest, kgDewaLatest, kgInriLatest];
+                                    const kgs = [kgAkmalLatest, kgDewaLatest, kgInriLatest, kgPurLatest];
                                     const pct = context.parsed.x;
                                     return `${context.label}: ${pct.toFixed(2)}% turun (${kgs[idx].toFixed(1)} kg lost)`;
                                 }
@@ -717,18 +717,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: labels,
                 datasets: [
                     {
-                        label: `Pur (${datasetLabel})`,
-                        data: dataPur,
-                        borderColor: '#00d2ff',
-                        backgroundColor: 'rgba(0, 210, 255, 0.08)',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#00d2ff',
-                        pointBorderColor: '#ffffff',
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        tension: 0.25
-                    },
-                    {
                         label: `Akmal (${datasetLabel})`,
                         data: dataAkmal,
                         borderColor: '#ff3b70',
@@ -759,6 +747,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         backgroundColor: 'rgba(168, 85, 247, 0.08)',
                         borderWidth: 3,
                         pointBackgroundColor: '#a855f7',
+                        pointBorderColor: '#ffffff',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        tension: 0.25
+                    },
+                    {
+                        label: `Pur (${datasetLabel})`,
+                        data: dataPur,
+                        borderColor: '#00d2ff',
+                        backgroundColor: 'rgba(0, 210, 255, 0.08)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#00d2ff',
                         pointBorderColor: '#ffffff',
                         pointRadius: 5,
                         pointHoverRadius: 7,
@@ -871,10 +871,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             tr.innerHTML = `
                 <td style="padding: 0.75rem 0.5rem; font-weight: 500;">${formattedDate}</td>
-                ${purTd}
                 ${akmalTd}
                 ${dewaTd}
                 ${inriTd}
+                ${purTd}
                 <td style="padding: 0.75rem 0.5rem; text-align: center;">${actionHtml}</td>
             `;
 
@@ -974,7 +974,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 const purData = getPartyData('pur', START_WEIGHT_LU, 'Pur');
-                const akmalData = getPartyData('akmal', START_WEIGHT_AKMAL, 'Stev');
+                const akmalData = getPartyData('akmal', START_WEIGHT_AKMAL, 'Akmal');
                 const dewaData = getPartyData('dewa', START_WEIGHT_DEWA, 'Dewa');
                 const inriData = getPartyData('inri', START_WEIGHT_INRI, 'Inri');
 
@@ -990,17 +990,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="schedule-date" style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.6rem; display: block;">📅 ${shortDateText}</span>
                     
                     <div class="schedule-participants-list" style="display: flex; flex-direction: column; gap: 0.35rem; width: 100%;">
-                        <!-- Pur Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
-                                <span class="pur-text" style="font-weight: 700;">${purData.shortName}</span>
-                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${purData.weightText}</span>
-                            </div>
-                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: -1px; white-space: nowrap;">
-                                ${purData.lossText}
-                            </div>
-                        </div>
-                        
                         <!-- Akmal Row -->
                         <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
                             <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
@@ -1024,13 +1013,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <!-- Inri Row -->
-                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%;">
+                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%; padding-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
                             <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
                                 <span class="inri-text" style="font-weight: 700;">${inriData.shortName}</span>
                                 <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${inriData.weightText}</span>
                             </div>
                             <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: -1px; white-space: nowrap;">
                                 ${inriData.lossText}
+                            </div>
+                        </div>
+
+                        <!-- Pur Row -->
+                        <div class="schedule-participant-row" style="display: flex; flex-direction: column; width: 100%;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.75rem; width: 100%; white-space: nowrap;">
+                                <span class="pur-text" style="font-weight: 700;">${purData.shortName}</span>
+                                <span style="font-family: monospace; color: #ffffff; font-weight: 600; white-space: nowrap;">${purData.weightText}</span>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: -1px; white-space: nowrap;">
+                                ${purData.lossText}
                             </div>
                         </div>
                     </div>
@@ -1116,18 +1116,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: milestoneLabels,
                 datasets: [
                     {
-                        label: 'Pur (Berat - kg)',
-                        data: dataPur,
-                        borderColor: '#00d2ff',
-                        backgroundColor: 'rgba(0, 210, 255, 0.05)',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#00d2ff',
-                        pointBorderColor: '#ffffff',
-                        pointRadius: 5,
-                        tension: 0.2,
-                        spanGaps: false
-                    },
-                    {
                         label: 'Akmal (Berat - kg)',
                         data: dataAkmal,
                         borderColor: '#ff3b70',
@@ -1158,6 +1146,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         backgroundColor: 'rgba(168, 85, 247, 0.05)',
                         borderWidth: 3,
                         pointBackgroundColor: '#a855f7',
+                        pointBorderColor: '#ffffff',
+                        pointRadius: 5,
+                        tension: 0.2,
+                        spanGaps: false
+                    },
+                    {
+                        label: 'Pur (Berat - kg)',
+                        data: dataPur,
+                        borderColor: '#00d2ff',
+                        backgroundColor: 'rgba(0, 210, 255, 0.05)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#00d2ff',
                         pointBorderColor: '#ffffff',
                         pointRadius: 5,
                         tension: 0.2,
