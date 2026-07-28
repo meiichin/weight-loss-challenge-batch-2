@@ -1343,7 +1343,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, (error) => {
         console.error("Firestore sync error: ", error);
-        alert("Firestore Error. Harap periksa apakah Firestore Database sudah dibuat di F    const quotes = [
+        alert("Firestore Error. Harap periksa apakah Firestore Database sudah dibuat di Firebase Console Anda dan rulesnya diset ke test mode.");
+    });
+
+    // --- DAILY BANNER MOTIVATION BANNER LOGIC ---
+    const quotes = [
         "Ingat Pur, donat hari ini adalah penyesalan di meja Oharang nanti! 🍩",
         "Akmal, minum air putih 2 gelas sekarang bisa membantu metabolisme lemak! 💧",
         "Dewa diam-diam defisit kalori, jangan sampai kalian terkejut di akhir tantangan! 🤫",
