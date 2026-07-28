@@ -905,9 +905,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const MILESTONES = [
             { name: 'Timbangan Awal', date: '2026-07-28', type: 'start', badgeClass: 'done', badgeText: 'Mulai' },
-            { name: 'Timbangan Antara I', date: '2026-08-14', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
-            { name: 'Timbangan Antara II', date: '2026-08-28', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
-            { name: 'Timbangan Antara III', date: '2026-09-11', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan I', date: '2026-07-31', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan II', date: '2026-08-07', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan III', date: '2026-08-14', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan IV', date: '2026-08-21', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan V', date: '2026-08-28', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan VI', date: '2026-09-04', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan VII', date: '2026-09-11', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan VIII', date: '2026-09-18', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
             { name: 'Timbangan Akhir', date: '2026-09-25', type: 'final', badgeClass: 'final', badgeText: 'Final 🏆' }
         ];
 
@@ -1061,8 +1066,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderMilestoneChart(logs) {
         const ctx = document.getElementById('milestone-chart').getContext('2d');
         
-        const milestoneDates = ['2026-07-28', '2026-08-14', '2026-08-28', '2026-09-11', '2026-09-25'];
-        const milestoneLabels = ['Awal (28 Jul)', 'Antara I (14 Agt)', 'Antara II (28 Agt)', 'Antara III (11 Sep)', 'Akhir (25 Sep)'];
+        const milestoneDates = [
+            '2026-07-28',
+            '2026-07-31',
+            '2026-08-07',
+            '2026-08-14',
+            '2026-08-21',
+            '2026-08-28',
+            '2026-09-04',
+            '2026-09-11',
+            '2026-09-18',
+            '2026-09-25'
+        ];
+        const milestoneLabels = [
+            'Awal (28 Jul)',
+            'Pekan I (31 Jul)',
+            'Pekan II (7 Agt)',
+            'Pekan III (14 Agt)',
+            'Pekan IV (21 Agt)',
+            'Pekan V (28 Agt)',
+            'Pekan VI (4 Sep)',
+            'Pekan VII (11 Sep)',
+            'Pekan VIII (18 Sep)',
+            'Akhir (25 Sep)'
+        ];
 
         const logsPurStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'pur');
         const logsAkmalStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'akmal');
