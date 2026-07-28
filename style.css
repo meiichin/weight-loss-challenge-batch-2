@@ -1316,9 +1316,7 @@ h1 {
 }
 
 .schedule-card .status-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+    position: static;
     font-size: 0.6rem;
     padding: 0.2rem 0.5rem;
     border-radius: 50px;

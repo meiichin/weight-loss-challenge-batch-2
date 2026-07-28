@@ -985,9 +985,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const shortDateText = `${dayNum} ${monthName} '${yearShort}`;
 
                 card.innerHTML = `
-                    <span class="status-badge done">${milestone.type === 'start' ? 'Mulai' : 'Done ✓'}</span>
-                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0.15rem; margin-bottom: 0.1rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%;">${milestone.name}</h4>
-                    <span class="schedule-date" style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.6rem; display: block;">📅 ${shortDateText}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; width: 100%;">
+                        <span class="status-badge done" style="position: static; font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.type === 'start' ? 'Mulai' : 'Done ✓'}</span>
+                        <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary); margin: 0;">📅 ${shortDateText}</span>
+                    </div>
+                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     
                     <div class="schedule-participants-list" style="display: flex; flex-direction: column; gap: 0.35rem; width: 100%;">
                         <!-- Akmal Row -->
@@ -1043,9 +1045,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const shortDateText = `${dayNum} ${monthName} '${yearShort}`;
 
                 card.innerHTML = `
-                    <span class="status-badge ${milestone.badgeClass}">${milestone.badgeText}</span>
-                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0.15rem; margin-bottom: 0.1rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%;">${milestone.name}</h4>
-                    <span class="schedule-date" style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.6rem; display: block;">📅 ${shortDateText}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; width: 100%;">
+                        <span class="status-badge ${milestone.badgeClass}" style="position: static; font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.badgeText}</span>
+                        <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary); margin: 0;">📅 ${shortDateText}</span>
+                    </div>
+                    <h4 style="font-size: 0.85rem; font-weight: 700; margin-top: 0; margin-bottom: 0.5rem; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
                     
                     <div class="upcoming-placeholder" style="padding: 1rem 0.25rem;">
                         <span class="lock-icon" style="font-size: 1.2rem; margin-bottom: 0.25rem;">🔒</span>
