@@ -1,20 +1,20 @@
 :root {
-    --bg-color: #080911;
-    --card-bg: rgba(20, 24, 46, 0.65);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
+    --bg-color: #f4f6fa;
+    --card-bg: #ffffff;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
     
-    --color-lu: #00d2ff;
-    --color-lu-glow: rgba(0, 210, 255, 0.15);
-    --color-akmal: #ff3b70;
-    --color-akmal-glow: rgba(255, 59, 112, 0.15);
+    --color-lu: #0284c7;
+    --color-lu-glow: rgba(2, 132, 199, 0.08);
+    --color-akmal: #db2777;
+    --color-akmal-glow: rgba(219, 39, 119, 0.08);
     
-    --color-gold: #ffbd00;
-    --color-gold-glow: rgba(255, 189, 0, 0.2);
+    --color-gold: #b45309;
+    --color-gold-glow: rgba(180, 83, 9, 0.08);
 
-    --color-inri: #a855f7;
-    --color-inri-glow: rgba(168, 85, 247, 0.15);
+    --color-inri: #7c3aed;
+    --color-inri-glow: rgba(124, 58, 237, 0.08);
     
     --font-heading: 'Space Grotesk', -apple-system, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
@@ -28,6 +28,7 @@
 
 body {
     background-color: var(--bg-color);
+    color: var(--text-primary);
     color: var(--text-primary);
     font-family: var(--font-body);
     min-height: 100vh;
@@ -55,7 +56,7 @@ body::before {
     left: -10%;
     width: 60%;
     height: 60%;
-    background: radial-gradient(circle, rgba(0, 210, 255, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.04) 0%, transparent 70%);
     z-index: -1;
     pointer-events: none;
 }
@@ -67,7 +68,7 @@ body::after {
     right: -10%;
     width: 60%;
     height: 60%;
-    background: radial-gradient(circle, rgba(255, 59, 112, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(219, 39, 119, 0.04) 0%, transparent 70%);
     z-index: -1;
     pointer-events: none;
 }
@@ -99,8 +100,8 @@ body::after {
 
 .badge {
     background: linear-gradient(135deg, rgba(255, 189, 0, 0.2), rgba(255, 59, 112, 0.2));
-    border: 1px solid rgba(255, 189, 0, 0.3);
-    color: var(--color-gold);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+    color: #b45309;
     padding: 0.35rem 0.85rem;
     border-radius: 50px;
     font-size: 0.75rem;
@@ -130,7 +131,7 @@ h1 {
     margin-top: 1.5rem;
     width: 100%;
     max-width: 450px;
-    background: rgba(255, 255, 255, 0.03);
+    background: #fff1f2;
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -162,7 +163,7 @@ h1 {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .time-block label {
@@ -192,7 +193,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 /* PARTICIPANTS SECTION */
@@ -204,7 +205,7 @@ h1 {
 }
 
 .participant-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.01);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 1.5rem;
@@ -223,22 +224,22 @@ h1 {
 
 .user-1:hover {
     border-color: rgba(0, 210, 255, 0.3);
-    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.05);
+    box-shadow: 0 10px 20px rgba(2, 132, 199, 0.12);
 }
 
 .user-2:hover {
     border-color: rgba(255, 59, 112, 0.3);
-    box-shadow: 0 10px 20px rgba(255, 59, 112, 0.05);
+    box-shadow: 0 10px 20px rgba(219, 39, 119, 0.12);
 }
 
 .user-3:hover {
     border-color: rgba(255, 189, 0, 0.3);
-    box-shadow: 0 10px 20px rgba(255, 189, 0, 0.05);
+    box-shadow: 0 10px 20px rgba(180, 83, 9, 0.12);
 }
 
 .user-4:hover {
     border-color: rgba(168, 85, 247, 0.3);
-    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.05);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.12);
 }
 
 .avatar-ring {
@@ -248,8 +249,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px dashed rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px dashed rgba(0, 0, 0, 0.12);
 }
 
 .user-1 .avatar-ring {
@@ -263,7 +264,7 @@ h1 {
 }
 
 .user-3 .avatar-ring {
-    border-color: var(--color-gold);
+    border-color: #b45309;
     background: var(--color-gold-glow);
 }
 
@@ -292,7 +293,7 @@ h1 {
     font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .weight-unit {
@@ -322,8 +323,8 @@ h1 {
 
 .user-3 .role-badge {
     background: rgba(255, 189, 0, 0.15);
-    color: var(--color-gold);
-    border: 1px solid rgba(255, 189, 0, 0.3);
+    color: #b45309;
+    border: 1px solid rgba(180, 83, 9, 0.2);
 }
 
 .user-4 .role-badge {
@@ -342,7 +343,7 @@ h1 {
 .timeline-progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 50px;
     overflow: hidden;
 }
@@ -362,7 +363,7 @@ h1 {
 }
 
 .timeline-date {
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
@@ -372,7 +373,7 @@ h1 {
 
 /* FORMULA & CALCULATOR */
 .formula-box {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.01);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.25rem;
@@ -392,7 +393,7 @@ h1 {
 }
 
 .math-expr strong {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .fraction {
@@ -407,11 +408,11 @@ h1 {
     border-bottom: 1px solid var(--text-secondary);
     padding-bottom: 2px;
     margin-bottom: 2px;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .denominator {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 /* Simulator Box */
@@ -424,7 +425,7 @@ h1 {
 .simulator-box h3 {
     font-size: 1rem;
     margin-bottom: 0.25rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .simulator-desc {
@@ -453,11 +454,11 @@ h1 {
 }
 
 .input-group input {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.04);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 0.75rem 1rem;
-    color: #ffffff;
+    color: var(--text-primary);
     font-family: var(--font-heading);
     font-size: 1.1rem;
     outline: none;
@@ -465,12 +466,12 @@ h1 {
 }
 
 .input-group input:focus {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    border-color: #cbd5e1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
 }
 
 .result-badge {
-    background: rgba(255, 255, 255, 0.03);
+    background: #fff1f2;
     border: 1px solid var(--border-color);
     padding: 0.5rem;
     border-radius: 8px;
@@ -483,7 +484,7 @@ h1 {
 .winner-alert {
     background: rgba(255, 189, 0, 0.05);
     border: 1px solid rgba(255, 189, 0, 0.15);
-    color: var(--color-gold);
+    color: #b45309;
     border-radius: 12px;
     padding: 0.75rem 1rem;
     text-align: center;
@@ -514,7 +515,7 @@ h1 {
 .rule-icon {
     font-size: 1.5rem;
     padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: #fff1f2;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     line-height: 1;
@@ -522,7 +523,7 @@ h1 {
 
 .rule-text h4 {
     font-size: 0.95rem;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 0.25rem;
 }
 
@@ -541,8 +542,8 @@ h1 {
 
 /* BET CARD */
 .bet-card {
-    background: linear-gradient(135deg, rgba(255, 59, 112, 0.15) 0%, rgba(255, 189, 0, 0.15) 100%);
-    border: 1px solid rgba(255, 59, 112, 0.25);
+    background: linear-gradient(135deg, #fff1f2 0%, #fffbeb 100%);
+    border: 1px solid rgba(219, 39, 119, 0.2);
     text-align: center;
     position: relative;
     z-index: 1;
@@ -561,7 +562,7 @@ h1 {
 
 .bet-tag {
     background: linear-gradient(90deg, var(--color-akmal), var(--color-gold));
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 0.7rem;
     font-weight: 800;
     padding: 0.25rem 0.75rem;
@@ -574,7 +575,7 @@ h1 {
 .bet-card h2 {
     font-size: 1.8rem;
     justify-content: center;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
@@ -585,7 +586,7 @@ h1 {
 }
 
 .deadline-badge {
-    background: rgba(8, 9, 17, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     border: 1px solid var(--border-color);
     padding: 0.75rem 1rem;
     border-radius: 12px;
@@ -595,7 +596,7 @@ h1 {
 }
 
 .deadline-badge strong {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 /* PODIUM GRID */
@@ -632,12 +633,12 @@ h1 {
 }
 
 .podium-2nd {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.04);
     border-color: rgba(192, 192, 192, 0.25);
 }
 
 .podium-3rd {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.04);
     border-color: rgba(205, 127, 50, 0.25);
 }
 
@@ -662,7 +663,7 @@ h1 {
 }
 
 .podium-1st .podium-pct {
-    color: var(--color-gold);
+    color: #b45309;
     text-shadow: 0 0 20px rgba(255, 189, 0, 0.4);
 }
 
@@ -683,8 +684,8 @@ h1 {
 }
 
 .bet-formula-note {
-    background: rgba(8, 9, 17, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #fff1f2;
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 12px;
     padding: 0.75rem 1rem;
     font-size: 0.8rem;
@@ -694,7 +695,7 @@ h1 {
 }
 
 .bet-formula-note strong {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 /* SIGNATURES SECTION */
@@ -712,8 +713,8 @@ h1 {
 }
 
 .sig-box {
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.005);
+    border: 1px dashed rgba(0, 0, 0, 0.08);
     border-radius: 16px;
     padding: 1.25rem;
     display: flex;
@@ -750,8 +751,8 @@ h1 {
 
 .badge-waiting {
     background: rgba(255, 189, 0, 0.1);
-    color: var(--color-gold);
-    border: 1px solid rgba(255, 189, 0, 0.3);
+    color: #b45309;
+    border: 1px solid rgba(180, 83, 9, 0.2);
     font-size: 0.65rem;
     font-weight: 700;
     padding: 0.15rem 0.5rem;
@@ -789,11 +790,11 @@ h1 {
 .signature-img {
     max-height: 55px;
     max-width: 100%;
-    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(140deg) saturate(3); /* turns sketch to cool blue */
+    filter: sepia(1) hue-rotate(190deg) saturate(3) brightness(0.6); /* blue ink */ /* turns sketch to cool blue */
 }
 
 #sig-akmal-box .signature-img {
-    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(300deg) saturate(3); /* turns sketch to pink */
+    filter: sepia(1) hue-rotate(300deg) saturate(3) brightness(0.6); /* pink ink */ /* turns sketch to pink */
 }
 
 .sig-date {
@@ -807,8 +808,8 @@ h1 {
 }
 
 .staakmalt-banner {
-    background: rgba(255, 255, 255, 0.02);
-    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.01);
+    border-left: 3px solid rgba(0, 0, 0, 0.12);
     padding: 0.75rem 1rem;
     border-radius: 0 12px 12px 0;
     font-size: 0.8rem;
@@ -834,7 +835,7 @@ h1 {
 
 .btn-primary {
     background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
-    color: #ffffff;
+    color: var(--text-primary);
     box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 }
 
@@ -845,18 +846,18 @@ h1 {
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
 }
 
 .btn-success {
     background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-    color: #ffffff;
+    color: var(--text-primary);
     box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
 }
 
@@ -892,7 +893,7 @@ h1 {
 }
 
 .modal-content {
-    background: #0f111a;
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 24px;
     width: 90%;
@@ -922,7 +923,7 @@ h1 {
 .modal-header h3 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .close-btn {
@@ -946,7 +947,7 @@ h1 {
 
 .canvas-container {
     width: 100%;
-    background: #191c2c;
+    background: #f8fafc;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     overflow: hidden;
@@ -979,7 +980,7 @@ h1 {
     width: 100%;
     height: 100%;
     z-index: 2000;
-    background: rgba(5, 6, 12, 0.95);
+    background: rgba(255, 255, 255, 0.96);
     display: none;
     align-items: center;
     justify-content: center;
@@ -995,7 +996,8 @@ h1 {
     padding: 2.5rem;
     max-width: 450px;
     width: 90%;
-    background: rgba(20, 24, 46, 0.7);
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
     border: 1px solid rgba(16, 185, 129, 0.3);
     border-radius: 28px;
     box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
@@ -1128,10 +1130,10 @@ h1 {
 /* TABLE & INPUT FORMS */
 .history-table th, .history-table td {
     padding: 0.75rem 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 .history-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.01);
 }
 .btn-delete-log {
     background: none;
@@ -1150,7 +1152,7 @@ h1 {
 
 /* DAILY MOTIVATION BANNER */
 .daily-banner-card {
-    background: linear-gradient(135deg, rgba(20, 26, 46, 0.75) 0%, rgba(11, 14, 26, 0.85) 100%);
+    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
     border: 1.5px solid rgba(255, 189, 0, 0.35);
     border-radius: 20px;
     padding: 1.25rem 1.75rem;
@@ -1160,7 +1162,7 @@ h1 {
     position: relative;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 189, 0, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 20px rgba(180, 83, 9, 0.06);
 }
 
 .quote-icon {
@@ -1185,7 +1187,7 @@ h1 {
     font-size: 0.65rem;
     font-weight: 800;
     letter-spacing: 0.1em;
-    color: var(--color-gold);
+    color: #b45309;
     text-transform: uppercase;
     display: block;
     margin-bottom: 0.35rem;
@@ -1200,8 +1202,8 @@ h1 {
 }
 
 .quote-refresh-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     color: var(--text-secondary);
     font-size: 1.1rem;
     width: 38px;
@@ -1216,8 +1218,8 @@ h1 {
 }
 
 .quote-refresh-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    background: #f1f5f9;
+    color: var(--text-primary);
     transform: rotate(180deg);
 }
 
@@ -1263,7 +1265,8 @@ h1 {
 }
 
 .schedule-card {
-    background: rgba(20, 24, 46, 0.45);
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1rem 0.75rem;
@@ -1284,31 +1287,32 @@ h1 {
     transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.18) !important;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-    background: rgba(20, 24, 46, 0.6);
+    background: #ffffff;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
 }
 
 .schedule-card.completed {
-    background: rgba(16, 185, 129, 0.03);
-    border-color: rgba(16, 185, 129, 0.15);
+    background: #f0fdf4;
+    border-color: #bbf7d0;
 }
 
 .schedule-card.completed:hover {
-    border-color: rgba(16, 185, 129, 0.4) !important;
-    background: rgba(16, 185, 129, 0.06);
-    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.08);
+    border-color: #4ade80 !important;
+    background: #f0fdf4;
+    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.04);
 }
 
 .schedule-card.upcoming {
     opacity: 0.65;
     border-style: dashed;
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(0, 0, 0, 0.005);
 }
 
 .schedule-card.upcoming:hover {
     opacity: 0.95;
     border-style: solid;
-    border-color: rgba(255, 189, 0, 0.3) !important;
-    box-shadow: 0 12px 24px rgba(255, 189, 0, 0.05);
+    border-color: #fde68a !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.03);
 }
 
 .schedule-card .status-badge {
@@ -1331,13 +1335,13 @@ h1 {
 
 .schedule-card .status-badge.nanti {
     background: rgba(255, 189, 0, 0.1);
-    color: #ffbd00;
-    border: 1px solid rgba(255, 189, 0, 0.25);
+    color: #b45309;
+    border: 1px solid rgba(180, 83, 9, 0.2);
 }
 
 .schedule-card .status-badge.final {
     background: linear-gradient(135deg, rgba(255, 59, 112, 0.2), rgba(255, 189, 0, 0.2));
-    color: #ff477e;
+    color: #db2777;
     border: 1px solid rgba(255, 59, 112, 0.3);
 }
 
@@ -1346,7 +1350,7 @@ h1 {
     margin-top: 0.5rem;
     margin-bottom: 0.15rem;
     font-size: 0.95rem;
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 700;
 }
 
@@ -1394,7 +1398,7 @@ h1 {
 
 .participant-progress-bar-container {
     height: 5px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     overflow: hidden;
     position: relative;
@@ -1421,7 +1425,7 @@ h1 {
     box-shadow: 0 0 6px var(--color-akmal-glow);
 }
 
-.dewa-text { color: var(--color-gold); }
+.dewa-text { color: #b45309; }
 .dewa-fill { 
     background: var(--color-gold);
     box-shadow: 0 0 6px var(--color-gold-glow);
@@ -1443,8 +1447,8 @@ h1 {
     color: var(--text-secondary);
     text-align: center;
     border-radius: 12px;
-    border: 1px dashed rgba(255, 255, 255, 0.05);
-    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.005);
     margin-top: 0.5rem;
     flex-grow: 1;
 }
@@ -1468,8 +1472,8 @@ h1 {
 
 /* CHART TAB BUTTONS */
 .chart-tab-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     padding: 0.5rem 1.1rem;
     border-radius: 50px;
     color: var(--text-secondary);
@@ -1481,16 +1485,23 @@ h1 {
 }
 
 .chart-tab-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
 .chart-tab-btn.active {
     background: linear-gradient(135deg, #00d2ff, #ff3b70);
     border-color: transparent;
-    color: #ffffff;
+    color: var(--text-primary);
     box-shadow: 0 4px 15px rgba(0, 210, 255, 0.25);
 }
 
 
+
+#sig-dewa-box .signature-img {
+    filter: sepia(1) hue-rotate(15deg) saturate(3) brightness(0.5); /* amber ink */
+}
+#sig-inri-box .signature-img {
+    filter: sepia(1) hue-rotate(250deg) saturate(3) brightness(0.6); /* purple ink */
+}

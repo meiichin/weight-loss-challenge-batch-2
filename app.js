@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         signatureCanvas.height = rect.height;
         
         // Canvas styling for drawing line
-        sigCtx.strokeStyle = "#ffffff";
+        sigCtx.strokeStyle = "#1e293b";
         sigCtx.lineWidth = 3.5;
         sigCtx.lineCap = "round";
         sigCtx.lineJoin = "round";
@@ -649,9 +649,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     scales: {
                         x: {
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
                             ticks: {
-                                color: '#9ca3af',
+                                color: '#64748b',
                                 callback: function(value) { return value + '%'; }
                             },
                             title: {
@@ -664,8 +664,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             grid: { display: false },
                             ticks: {
                                 color: function(context) {
-                                    const colors = ['#00d2ff', '#ff3b70', '#ffbd00', '#a855f7'];
-                                    return colors[context.index] || '#ffffff';
+                                    const colors = ['#db2777', '#b45309', '#7c3aed', '#0284c7'];
+                                    return colors[context.index] || '#1e293b';
                                 },
                                 font: { family: 'Plus Jakarta Sans', weight: 'bold', size: 12 }
                             }
@@ -771,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        labels: { color: '#e5e7eb', font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' } }
+                        labels: { color: '#475569', font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' } }
                     },
                     tooltip: {
                         callbacks: {
@@ -783,20 +783,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 scales: {
                     x: {
-                        grid: { color: 'rgba(255, 255, 255, 0.04)' },
-                        ticks: { color: '#9ca3af', font: { family: 'Plus Jakarta Sans' } }
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans' } }
                     },
                     y: {
-                        grid: { color: 'rgba(255, 255, 255, 0.04)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
                         ticks: {
-                            color: '#9ca3af',
+                            color: '#64748b',
                             font: { family: 'Plus Jakarta Sans' },
                             callback: function(value) { return value + tooltipSuffix; }
                         },
                         title: {
                             display: true,
                             text: yAxisLabel,
-                            color: '#9ca3af',
+                            color: '#64748b',
                             font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' }
                         }
                     }
@@ -831,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         rows.forEach(row => {
             const tr = document.createElement('tr');
-            tr.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
+            tr.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
 
             const formattedDate = new Date(row.date).toLocaleDateString('id-ID', {
                 day: 'numeric',
@@ -1170,7 +1170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        labels: { color: '#e5e7eb', font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' } }
+                        labels: { color: '#475569', font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' } }
                     },
                     tooltip: {
                         callbacks: {
@@ -1183,13 +1183,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 scales: {
                     x: {
-                        grid: { color: 'rgba(255, 255, 255, 0.03)' },
-                        ticks: { color: '#9ca3af', font: { family: 'Plus Jakarta Sans', size: 9 } }
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 9 } }
                     },
                     y: {
-                        grid: { color: 'rgba(255, 255, 255, 0.03)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
                         ticks: {
-                            color: '#9ca3af',
+                            color: '#64748b',
                             font: { family: 'Plus Jakarta Sans', size: 9 },
                             callback: function(value) { return value + ' kg'; }
                         }
