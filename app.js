@@ -983,6 +983,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dewaData = getPartyData('dewa', START_WEIGHT_DEWA, 'Dewa');
                 const inriData = getPartyData('inri', START_WEIGHT_INRI, 'Inri');
 
+                // Calculate winner of this week
+                let winnerParty = null;
+                if (milestone.type !== 'start') {
+                    const candidates = [];
+                    const purLog = milestoneLogs.find(l => l.party === 'pur');
+                    const akmalLog = milestoneLogs.find(l => l.party === 'akmal');
+                    const dewaLog = milestoneLogs.find(l => l.party === 'dewa');
+                    const inriLog = milestoneLogs.find(l => l.party === 'inri');
+
+                    if (purLog && START_WEIGHT_LU) candidates.push({ key: 'pur', pct: ((START_WEIGHT_LU - purLog.weight) / START_WEIGHT_LU) * 100 });
+                    if (akmalLog && START_WEIGHT_AKMAL) candidates.push({ key: 'akmal', pct: ((START_WEIGHT_AKMAL - akmalLog.weight) / START_WEIGHT_AKMAL) * 100 });
+                    if (dewaLog && START_WEIGHT_DEWA) candidates.push({ key: 'dewa', pct: ((START_WEIGHT_DEWA - dewaLog.weight) / START_WEIGHT_DEWA) * 100 });
+                    if (inriLog && START_WEIGHT_INRI) candidates.push({ key: 'inri', pct: ((START_WEIGHT_INRI - inriLog.weight) / START_WEIGHT_INRI) * 100 });
+
+                    if (candidates.length > 0) {
+                        candidates.sort((a, b) => b.pct - a.pct);
+                        if (candidates[0].pct > 0) {
+                            winnerParty = candidates[0].key;
+                        }
+                    }
+                }
+
+                const akmalWinnerStyle = winnerParty === 'akmal' ? 'border: 1px solid #fcd34d !important; background: #fffbeb !important; box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);' : '';
+                const akmalWinnerCrown = winnerParty === 'akmal' ? '👑 ' : '';
+
+                const dewaWinnerStyle = winnerParty === 'dewa' ? 'border: 1px solid #fcd34d !important; background: #fffbeb !important; box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);' : '';
+                const dewaWinnerCrown = winnerParty === 'dewa' ? '👑 ' : '';
+
+                const inriWinnerStyle = winnerParty === 'inri' ? 'border: 1px solid #fcd34d !important; background: #fffbeb !important; box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);' : '';
+                const inriWinnerCrown = winnerParty === 'inri' ? '👑 ' : '';
+
+                const purWinnerStyle = winnerParty === 'pur' ? 'border: 1px solid #fcd34d !important; background: #fffbeb !important; box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);' : '';
+                const purWinnerCrown = winnerParty === 'pur' ? '👑 ' : '';
+
                 // Use a shorter date representation
                 const yearShort = new Date(milestone.date).getFullYear().toString().substr(-2);
                 const monthName = new Date(milestone.date).toLocaleDateString('id-ID', { month: 'short' });
@@ -1000,8 +1034,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <div class="schedule-participants-list">
                         <!-- Akmal Row -->
-                        <div class="schedule-participant-row user-2">
-                            <span class="akmal-text" style="font-size: 0.75rem; font-weight: 700;">${akmalData.shortName}</span>
+                        <div class="schedule-participant-row user-2" style="${akmalWinnerStyle}">
+                            <span class="akmal-text" style="font-size: 0.75rem; font-weight: 700;">${akmalWinnerCrown}${akmalData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${akmalData.weightText}</span>
                             <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${akmalData.lossText}
@@ -1009,8 +1043,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <!-- Dewa Row -->
-                        <div class="schedule-participant-row user-3">
-                            <span class="dewa-text" style="font-size: 0.75rem; font-weight: 700;">${dewaData.shortName}</span>
+                        <div class="schedule-participant-row user-3" style="${dewaWinnerStyle}">
+                            <span class="dewa-text" style="font-size: 0.75rem; font-weight: 700;">${dewaWinnerCrown}${dewaData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${dewaData.weightText}</span>
                             <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${dewaData.lossText}
@@ -1018,8 +1052,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <!-- Inri Row -->
-                        <div class="schedule-participant-row user-4">
-                            <span class="inri-text" style="font-size: 0.75rem; font-weight: 700;">${inriData.shortName}</span>
+                        <div class="schedule-participant-row user-4" style="${inriWinnerStyle}">
+                            <span class="inri-text" style="font-size: 0.75rem; font-weight: 700;">${inriWinnerCrown}${inriData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${inriData.weightText}</span>
                             <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${inriData.lossText}
@@ -1027,8 +1061,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <!-- Pur Row -->
-                        <div class="schedule-participant-row user-1">
-                            <span class="pur-text" style="font-size: 0.75rem; font-weight: 700;">${purData.shortName}</span>
+                        <div class="schedule-participant-row user-1" style="${purWinnerStyle}">
+                            <span class="pur-text" style="font-size: 0.75rem; font-weight: 700;">${purWinnerCrown}${purData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${purData.weightText}</span>
                             <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: 1px; white-space: nowrap;">
                                 ${purData.lossText}
