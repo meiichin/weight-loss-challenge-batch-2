@@ -944,7 +944,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         return {
                             shortName: shortName,
                             weightText: 'Belum',
-                            lossText: '-',
+                            kgText: '-',
+                            pctText: '',
                             lossColor: 'var(--text-secondary)',
                             rawLossPct: -Infinity
                         };
@@ -963,23 +964,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const lossPct = prevWeight ? ((prevWeight - weight) / prevWeight) * 100 : 0;
                     const kgDiff = prevWeight ? prevWeight - weight : 0;
-                    let lossText = '';
+                    let kgText = '';
+                    let pctText = '';
                     let lossColor = '';
 
                     if (milestone.type === 'start') {
-                        lossText = '0.0%';
+                        kgText = '0.00 kg';
+                        pctText = '0.00%';
                         lossColor = 'var(--text-secondary)';
                     } else {
-                        const kgText = kgDiff >= 0 ? `-${kgDiff.toFixed(2)}kg` : `+${Math.abs(kgDiff).toFixed(2)}kg`;
-                        const pctText = lossPct >= 0 ? `-${lossPct.toFixed(2)}%` : `+${Math.abs(lossPct).toFixed(2)}%`;
-                        lossText = `${kgText} (${pctText})`;
+                        kgText = kgDiff >= 0 ? `-${kgDiff.toFixed(2)} kg` : `+${Math.abs(kgDiff).toFixed(2)} kg`;
+                        pctText = lossPct >= 0 ? `-${lossPct.toFixed(2)}%` : `+${Math.abs(lossPct).toFixed(2)}%`;
                         lossColor = kgDiff >= 0 ? '#10b981' : '#ff3b70';
                     }
 
                     return {
                         shortName: shortName,
                         weightText: `${weight.toFixed(2)} kg`,
-                        lossText: lossText,
+                        kgText: kgText,
+                        pctText: pctText,
                         lossColor: lossColor,
                         rawLossPct: milestone.type === 'start' ? 0 : lossPct
                     };
@@ -1036,37 +1039,49 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="schedule-participants-list">
                         <!-- Akmal Row -->
                         <div class="schedule-participant-row user-2" style="${akmalWinnerStyle}">
-                            <span class="akmal-text" style="font-size: 0.75rem; font-weight: 700;">${akmalWinnerCrown}${akmalData.shortName}</span>
+                            <span class="akmal-text" style="font-size: 0.75rem; font-weight: 700; white-space: nowrap;">${akmalWinnerCrown}${akmalData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${akmalData.weightText}</span>
-                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; margin-top: 1px; white-space: nowrap;">
-                                ${akmalData.lossText}
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; margin-top: 1px; white-space: nowrap; display: block; text-align: center;">
+                                ${akmalData.kgText}
+                            </span>
+                            <span style="font-size: 0.6rem; font-weight: 700; font-family: monospace; color: ${akmalData.lossColor}; white-space: nowrap; display: block; text-align: center; margin-top: -2px;">
+                                ${milestone.type === 'start' ? '' : '(' + akmalData.pctText + ')'}
                             </span>
                         </div>
 
                         <!-- Dewa Row -->
                         <div class="schedule-participant-row user-3" style="${dewaWinnerStyle}">
-                            <span class="dewa-text" style="font-size: 0.75rem; font-weight: 700;">${dewaWinnerCrown}${dewaData.shortName}</span>
+                            <span class="dewa-text" style="font-size: 0.75rem; font-weight: 700; white-space: nowrap;">${dewaWinnerCrown}${dewaData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${dewaData.weightText}</span>
-                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; margin-top: 1px; white-space: nowrap;">
-                                ${dewaData.lossText}
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; margin-top: 1px; white-space: nowrap; display: block; text-align: center;">
+                                ${dewaData.kgText}
+                            </span>
+                            <span style="font-size: 0.6rem; font-weight: 700; font-family: monospace; color: ${dewaData.lossColor}; white-space: nowrap; display: block; text-align: center; margin-top: -2px;">
+                                ${milestone.type === 'start' ? '' : '(' + dewaData.pctText + ')'}
                             </span>
                         </div>
 
                         <!-- Inri Row -->
                         <div class="schedule-participant-row user-4" style="${inriWinnerStyle}">
-                            <span class="inri-text" style="font-size: 0.75rem; font-weight: 700;">${inriWinnerCrown}${inriData.shortName}</span>
+                            <span class="inri-text" style="font-size: 0.75rem; font-weight: 700; white-space: nowrap;">${inriWinnerCrown}${inriData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${inriData.weightText}</span>
-                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: 1px; white-space: nowrap;">
-                                ${inriData.lossText}
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; margin-top: 1px; white-space: nowrap; display: block; text-align: center;">
+                                ${inriData.kgText}
+                            </span>
+                            <span style="font-size: 0.6rem; font-weight: 700; font-family: monospace; color: ${inriData.lossColor}; white-space: nowrap; display: block; text-align: center; margin-top: -2px;">
+                                ${milestone.type === 'start' ? '' : '(' + inriData.pctText + ')'}
                             </span>
                         </div>
 
                         <!-- Pur Row -->
                         <div class="schedule-participant-row user-1" style="${purWinnerStyle}">
-                            <span class="pur-text" style="font-size: 0.75rem; font-weight: 700;">${purWinnerCrown}${purData.shortName}</span>
+                            <span class="pur-text" style="font-size: 0.75rem; font-weight: 700; white-space: nowrap;">${purWinnerCrown}${purData.shortName}</span>
                             <span style="font-family: monospace; color: var(--text-primary); font-weight: 600; font-size: 0.8rem; white-space: nowrap;">${purData.weightText}</span>
-                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: 1px; white-space: nowrap;">
-                                ${purData.lossText}
+                            <span style="font-size: 0.65rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; margin-top: 1px; white-space: nowrap; display: block; text-align: center;">
+                                ${purData.kgText}
+                            </span>
+                            <span style="font-size: 0.6rem; font-weight: 700; font-family: monospace; color: ${purData.lossColor}; white-space: nowrap; display: block; text-align: center; margin-top: -2px;">
+                                ${milestone.type === 'start' ? '' : '(' + purData.pctText + ')'}
                             </span>
                         </div>
                     </div>
