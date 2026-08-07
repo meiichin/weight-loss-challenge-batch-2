@@ -916,7 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'Timbangan Akhir', date: '2026-09-25', type: 'final', badgeClass: 'final', badgeText: 'Final 🏆' }
         ];
 
-        MILESTONES.forEach(milestone => {
+        MILESTONES.forEach((milestone, idx) => {
             // Find logs for this date
             const milestoneLogs = logs.filter(log => log.date === milestone.date);
             
@@ -937,26 +937,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Determine weights for each party
                 const getPartyData = (party, startWeight, shortName) => {
                     let weight = null;
-                    if (milestone.type === 'start') {
-                        // For start date, get the logged weight directly from the start date log
-                        const log = milestoneLogs.find(l => l.party === party);
-                        if (log) weight = log.weight;
-                    } else {
-                        const log = milestoneLogs.find(l => l.party === party);
-                        if (log) weight = log.weight;
-                    }
+                    const log = milestoneLogs.find(l => l.party === party);
+                    if (log) weight = log.weight;
 
                     if (weight === null || weight <= 0) {
                         return {
                             shortName: shortName,
                             weightText: 'Belum',
                             lossText: '-',
-                            lossColor: 'var(--text-secondary)'
+                            lossColor: 'var(--text-secondary)',
+                            rawLossPct: -Infinity
                         };
                     }
 
-                    const lossPct = startWeight ? ((startWeight - weight) / startWeight) * 100 : 0;
-                    const kgDiff = startWeight ? startWeight - weight : 0;
+                    // Look up previous milestone weight
+                    let prevWeight = null;
+                    if (idx > 0) {
+                        const prevMilestoneDate = MILESTONES[idx - 1].date;
+                        const prevLog = logs.find(l => l.party === party && l.date === prevMilestoneDate);
+                        if (prevLog) prevWeight = prevLog.weight;
+                    }
+                    if (prevWeight === null) {
+                        prevWeight = startWeight;
+                    }
+
+                    const lossPct = prevWeight ? ((prevWeight - weight) / prevWeight) * 100 : 0;
+                    const kgDiff = prevWeight ? prevWeight - weight : 0;
                     let lossText = '';
                     let lossColor = '';
 
@@ -964,17 +970,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         lossText = '0.0%';
                         lossColor = 'var(--text-secondary)';
                     } else {
-                        const kgText = kgDiff >= 0 ? `-${kgDiff.toFixed(1)}kg` : `+${Math.abs(kgDiff).toFixed(1)}kg`;
-                        const pctText = lossPct >= 0 ? `-${lossPct.toFixed(1)}%` : `+${Math.abs(lossPct).toFixed(1)}%`;
+                        const kgText = kgDiff >= 0 ? `-${kgDiff.toFixed(2)}kg` : `+${Math.abs(kgDiff).toFixed(2)}kg`;
+                        const pctText = lossPct >= 0 ? `-${lossPct.toFixed(2)}%` : `+${Math.abs(lossPct).toFixed(2)}%`;
                         lossText = `${kgText} (${pctText})`;
                         lossColor = kgDiff >= 0 ? '#10b981' : '#ff3b70';
                     }
 
                     return {
                         shortName: shortName,
-                        weightText: `${weight.toFixed(1)} kg`,
+                        weightText: `${weight.toFixed(2)} kg`,
                         lossText: lossText,
-                        lossColor: lossColor
+                        lossColor: lossColor,
+                        rawLossPct: milestone.type === 'start' ? 0 : lossPct
                     };
                 };
 
@@ -986,22 +993,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Calculate winner of this week
                 let winnerParty = null;
                 if (milestone.type !== 'start') {
-                    const candidates = [];
-                    const purLog = milestoneLogs.find(l => l.party === 'pur');
-                    const akmalLog = milestoneLogs.find(l => l.party === 'akmal');
-                    const dewaLog = milestoneLogs.find(l => l.party === 'dewa');
-                    const inriLog = milestoneLogs.find(l => l.party === 'inri');
+                    const candidates = [
+                        { key: 'pur', pct: purData.rawLossPct },
+                        { key: 'akmal', pct: akmalData.rawLossPct },
+                        { key: 'dewa', pct: dewaData.rawLossPct },
+                        { key: 'inri', pct: inriData.rawLossPct }
+                    ];
 
-                    if (purLog && START_WEIGHT_LU) candidates.push({ key: 'pur', pct: ((START_WEIGHT_LU - purLog.weight) / START_WEIGHT_LU) * 100 });
-                    if (akmalLog && START_WEIGHT_AKMAL) candidates.push({ key: 'akmal', pct: ((START_WEIGHT_AKMAL - akmalLog.weight) / START_WEIGHT_AKMAL) * 100 });
-                    if (dewaLog && START_WEIGHT_DEWA) candidates.push({ key: 'dewa', pct: ((START_WEIGHT_DEWA - dewaLog.weight) / START_WEIGHT_DEWA) * 100 });
-                    if (inriLog && START_WEIGHT_INRI) candidates.push({ key: 'inri', pct: ((START_WEIGHT_INRI - inriLog.weight) / START_WEIGHT_INRI) * 100 });
-
-                    if (candidates.length > 0) {
-                        candidates.sort((a, b) => b.pct - a.pct);
-                        if (candidates[0].pct > 0) {
-                            winnerParty = candidates[0].key;
-                        }
+                    candidates.sort((a, b) => b.pct - a.pct);
+                    if (candidates[0].pct > -Infinity && candidates[0].pct > 0) {
+                        winnerParty = candidates[0].key;
                     }
                 }
 
