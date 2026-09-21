@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let START_WEIGHT_INRI = null;
 
     const START_DATE = new Date('2026-07-28T00:00:00');
-    const END_DATE = new Date('2026-09-25T08:00:00');
+    const END_DATE = new Date('2026-09-21T00:00:00');
 
     // DOM Elements
     const daysEl = document.getElementById('days');
@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
             hoursEl.textContent = '00';
             minutesEl.textContent = '00';
             secondsEl.textContent = '00';
-            document.querySelector('.countdown-label').textContent = 'TANTANGAN SELESAI!';
+            document.querySelector('.countdown-label').textContent = '🎉 TANTANGAN SELESAI!';
+            if (timelineProgress) timelineProgress.style.width = '100%';
             return;
         }
 
@@ -905,20 +906,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const MILESTONES = [
             { name: 'Timbangan Awal', date: '2026-07-28', type: 'start', badgeClass: 'done', badgeText: 'Mulai' },
-            { name: 'Timbangan Pekan I', date: '2026-07-31', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan II', date: '2026-08-07', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan III', date: '2026-08-14', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan IV', date: '2026-08-21', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan V', date: '2026-08-28', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan VI', date: '2026-09-04', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan VII', date: '2026-09-11', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan VIII', date: '2026-09-21', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Akhir', date: '2026-09-25', type: 'final', badgeClass: 'final', badgeText: 'Final 🏆' }
+            { name: 'Timbangan Pekan I', date: '2026-07-31', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan II', date: '2026-08-07', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan III', date: '2026-08-14', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan IV', date: '2026-08-21', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan V', date: '2026-08-28', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan VI', date: '2026-09-04', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Pekan VII', date: '2026-09-11', type: 'antara', badgeClass: 'done', badgeText: 'Done ✓' },
+            { name: 'Timbangan Akhir (Hasil Kumulatif)', date: '2026-09-21', type: 'final', badgeClass: 'final', badgeText: 'Final 🏆' }
         ];
 
         MILESTONES.forEach((milestone, idx) => {
             // Find logs for this date
-            const milestoneLogs = logs.filter(log => log.date === milestone.date || (milestone.name.includes('Pekan VIII') && (log.date === '2026-09-21' || log.date === '2026-09-18')));
+            const milestoneLogs = logs.filter(log => log.date === milestone.date || (milestone.type === 'final' && (log.date === '2026-09-21' || log.date === '2026-09-18')));
             
             // Check if completed: for start, it is completed if logs exist on start date.
             const isCompleted = milestoneLogs.length > 0;
@@ -953,7 +953,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Look up previous milestone weight
                     let prevWeight = null;
-                    if (idx > 0) {
+                    if (milestone.type === 'final') {
+                        // For final milestone, compare CUMULATIVELY against initial start weight!
+                        prevWeight = startWeight;
+                    } else if (idx > 0) {
                         const prevMilestoneDate = MILESTONES[idx - 1].date;
                         const prevLog = logs.find(l => l.party === party && l.date === prevMilestoneDate);
                         if (prevLog) prevWeight = prevLog.weight;
@@ -993,7 +996,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dewaData = getPartyData('dewa', START_WEIGHT_DEWA, 'Dewa');
                 const inriData = getPartyData('inri', START_WEIGHT_INRI, 'Inri');
 
-                // Calculate winner of this week
+                // Calculate winner of this week / final
                 let winnerParty = null;
                 if (milestone.type !== 'start') {
                     const candidates = [
@@ -1030,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.innerHTML = `
                     <div class="schedule-info">
                         <div style="display: flex; gap: 0.4rem; align-items: center;">
-                            <span class="status-badge done" style="font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.type === 'start' ? 'Mulai' : 'Done ✓'}</span>
+                            <span class="status-badge ${milestone.type === 'final' ? 'final' : 'done'}" style="font-size: 0.6rem; padding: 0.15rem 0.4rem; font-weight: 800;">${milestone.type === 'start' ? 'Mulai' : (milestone.type === 'final' ? 'Final 🏆' : 'Done ✓')}</span>
                             <span class="schedule-date" style="font-size: 0.65rem; color: var(--text-secondary);">📅 ${shortDateText}</span>
                         </div>
                         <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0.15rem 0 0; line-height: 1.2; color: var(--text-primary);">${milestone.name}</h4>
@@ -1125,8 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '2026-08-28',
             '2026-09-04',
             '2026-09-11',
-            '2026-09-21',
-            '2026-09-25'
+            '2026-09-21'
         ];
         const milestoneLabels = [
             'Awal (28 Jul)',
@@ -1137,8 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Pekan V (28 Agt)',
             'Pekan VI (4 Sep)',
             'Pekan VII (11 Sep)',
-            'Pekan VIII (21 Sep)',
-            'Akhir (25 Sep)'
+            'Akhir (21 Sep 🏆)'
         ];
 
         const logsPurStart = logs.filter(l => l.date === '2026-07-28' && l.party === 'pur');
@@ -1399,6 +1400,13 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTable(localLogs);
             renderSchedules(localLogs);
             renderMilestoneChart(localLogs);
+
+            // Auto-populate simulator with final official weights
+            if (simAkmalInput && !simAkmalInput.value) simAkmalInput.value = 79.78;
+            if (simDewaInput && !simDewaInput.value) simDewaInput.value = 82.10;
+            if (simInriInput && !simInriInput.value) simInriInput.value = 57.42;
+            if (simLuInput && !simLuInput.value) simLuInput.value = 86.59;
+            runSimulation();
 
             // Confetti Trigger if all 4 are signed
             const allSigned = data.pur?.signed && data.akmal?.signed && data.dewa?.signed && data.inri?.signed;
