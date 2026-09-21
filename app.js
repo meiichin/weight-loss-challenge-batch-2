@@ -912,13 +912,13 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'Timbangan Pekan V', date: '2026-08-28', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
             { name: 'Timbangan Pekan VI', date: '2026-09-04', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
             { name: 'Timbangan Pekan VII', date: '2026-09-11', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
-            { name: 'Timbangan Pekan VIII', date: '2026-09-18', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
+            { name: 'Timbangan Pekan VIII', date: '2026-09-21', type: 'antara', badgeClass: 'nanti', badgeText: 'Nanti' },
             { name: 'Timbangan Akhir', date: '2026-09-25', type: 'final', badgeClass: 'final', badgeText: 'Final 🏆' }
         ];
 
         MILESTONES.forEach((milestone, idx) => {
             // Find logs for this date
-            const milestoneLogs = logs.filter(log => log.date === milestone.date);
+            const milestoneLogs = logs.filter(log => log.date === milestone.date || (milestone.name.includes('Pekan VIII') && (log.date === '2026-09-21' || log.date === '2026-09-18')));
             
             // Check if completed: for start, it is completed if logs exist on start date.
             const isCompleted = milestoneLogs.length > 0;
@@ -1125,7 +1125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '2026-08-28',
             '2026-09-04',
             '2026-09-11',
-            '2026-09-18',
+            '2026-09-21',
             '2026-09-25'
         ];
         const milestoneLabels = [
@@ -1137,7 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Pekan V (28 Agt)',
             'Pekan VI (4 Sep)',
             'Pekan VII (11 Sep)',
-            'Pekan VIII (18 Sep)',
+            'Pekan VIII (21 Sep)',
             'Akhir (25 Sep)'
         ];
 
